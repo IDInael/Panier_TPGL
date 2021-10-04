@@ -1,8 +1,5 @@
 package fr.ufrsciencestech.panier;
 
-
-import fr.ufrsciencestech.panier.Fruit;
-
 /**
  *
  * @author roudet
