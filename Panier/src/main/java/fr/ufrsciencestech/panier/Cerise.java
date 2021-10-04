@@ -61,16 +61,4 @@ public class Cerise {
         return true;
     }
 
-
-    public static void main (String[] args){
-        //Ecrire ici vos tests
-	       System.out.println("premier test Cerise");
-         Cerise o=new Cerise(10,"Maroc");
-
-         System.out.println("Fruit dans le panier : "+o);
-
-         Cerise o2=new Cerise(5.0,"Algerie");
-         System.out.println("Fruit dans le panier : "+o2);
-
-   }
 }
