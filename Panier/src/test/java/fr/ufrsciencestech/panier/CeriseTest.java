@@ -43,12 +43,10 @@ public class CeriseTest {
     @Test
     public void testGetPrix() {
         System.out.println("getPrix");
-        Cerise instance = new Cerise();
-        double expResult = 0.0;
-        double result = instance.getPrix();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Cerise instance = new Cerise(3.3, "Maroc");
+        double expResult = 3.3;
+
+        assertTrue(instance.getPrix() == expResult);
     }
 
     /**
@@ -56,12 +54,11 @@ public class CeriseTest {
      */
     @Test
     public void testSetPrix() {
-        System.out.println("setPrix");
-        double prix = 0.0;
+        double prix = 5.0;
         Cerise instance = new Cerise();
         instance.setPrix(prix);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertTrue(instance.getPrix() == prix);
     }
 
     /**
@@ -69,13 +66,10 @@ public class CeriseTest {
      */
     @Test
     public void testGetOrigine() {
-        System.out.println("getOrigine");
-        Cerise instance = new Cerise();
-        String expResult = "";
-        String result = instance.getOrigine();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Cerise instance = new Cerise(2.4, "Espagne");
+        String expResult = "Espagne";
+        
+        assertEquals(instance.getOrigine(), expResult);
     }
 
     /**
@@ -83,12 +77,11 @@ public class CeriseTest {
      */
     @Test
     public void testSetOrigine() {
-        System.out.println("setOrigine");
-        String origine = "";
+        String origine = "France";
         Cerise instance = new Cerise();
         instance.setOrigine(origine);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(instance.getOrigine(), origine);
     }
 
     /**
@@ -96,7 +89,6 @@ public class CeriseTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
         Cerise instance = new Cerise();
         String expResult = "";
         String result = instance.toString();
@@ -115,9 +107,8 @@ public class CeriseTest {
         Cerise instance = new Cerise();
         boolean expResult = false;
         boolean result = instance.equals(o);
+
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -125,13 +116,11 @@ public class CeriseTest {
      */
     @Test
     public void testIsSeedless() {
-        System.out.println("isSeedless");
         Cerise instance = new Cerise();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isSeedless();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
