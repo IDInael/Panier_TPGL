@@ -5,6 +5,7 @@
  */
 package fr.ufrsciencestech.panier;
 
+import fr.ufrsciencestech.panier.Modele.Cerise;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

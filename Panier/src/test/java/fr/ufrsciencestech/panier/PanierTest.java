@@ -5,6 +5,8 @@
  */
 package fr.ufrsciencestech.panier;
 
+import fr.ufrsciencestech.panier.Modele.Panier;
+import fr.ufrsciencestech.panier.Modele.Fruit;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,7 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import fr.ufrsciencestech.panier.PanierPleinException;
+import fr.ufrsciencestech.panier.Modele.PanierPleinException;
 import static org.mockito.Mockito.*;
 
 /**
