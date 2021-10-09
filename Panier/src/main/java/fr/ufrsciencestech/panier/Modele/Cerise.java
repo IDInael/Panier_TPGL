@@ -4,14 +4,14 @@ package fr.ufrsciencestech.panier.Modele;
  *
  * @author roudet
  */
-public class Cerise {
+public class Cerise implements Fruit{
     private double prix;
     private String origine;
 
     public Cerise()
     {
         this.prix = 0.5;  //prix en euros
-        this.origine="Espagne";
+        this.origine="Maroc";
     }
 
     public Cerise(double prix, String origine)
@@ -22,7 +22,7 @@ public class Cerise {
 	    this.prix = prix;
 
 	if(origine.equals(""))
-            this.origine = "Espagne";  //Espagne par défaut
+            this.origine = "Maroc";  //Maroc par défaut
 	else
             this.origine = origine;
     }

@@ -91,11 +91,9 @@ public class CeriseTest {
     @Test
     public void testToString() {
         Cerise instance = new Cerise();
-        String expResult = "";
+        String expResult = "Cerise de " + instance.getOrigine() + " a " + instance.getPrix() + " euros";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -103,7 +101,6 @@ public class CeriseTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
         Object o = null;
         Cerise instance = new Cerise();
         boolean expResult = false;

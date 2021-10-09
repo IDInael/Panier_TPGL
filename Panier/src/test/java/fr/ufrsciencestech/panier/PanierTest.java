@@ -5,8 +5,10 @@
  */
 package fr.ufrsciencestech.panier;
 
+import fr.ufrsciencestech.panier.Modele.Cerise;
 import fr.ufrsciencestech.panier.Modele.Panier;
 import fr.ufrsciencestech.panier.Modele.Fruit;
+import fr.ufrsciencestech.panier.Modele.Orange;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,6 +18,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import fr.ufrsciencestech.panier.Modele.PanierPleinException;
+import fr.ufrsciencestech.panier.Modele.PanierVideException;
 import static org.mockito.Mockito.*;
 
 /**
@@ -51,14 +54,14 @@ public class PanierTest {
      * Test of toString method, of class Panier.
      */
     @Test
-    public void testToString() {
-        System.out.println("toString");
-        Panier instance = null;
-        String expResult = "";
+    public void testToString() throws PanierPleinException {
+        Panier instance = new Panier(2);
+        Fruit o = new Orange();  
+        instance.ajout(o);
+        
+        String expResult = o.toString()+" | ";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -66,13 +69,14 @@ public class PanierTest {
      */
     @Test
     public void testGetFruits() {
-        System.out.println("getFruits");
-        Panier instance = null;
-        ArrayList<Fruit> expResult = null;
+        Panier instance = new Panier(2);
+        ArrayList<Fruit> fruits =  new ArrayList<Fruit>();
+        fruits.add(new Orange());
+        instance.setFruits(fruits);
+        
+        ArrayList<Fruit> expResult = fruits ;
         ArrayList<Fruit> result = instance.getFruits();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -80,12 +84,15 @@ public class PanierTest {
      */
     @Test
     public void testSetFruits() {
-        System.out.println("setFruits");
-        ArrayList<Fruit> fruits = null;
-        Panier instance = null;
+        ArrayList<Fruit> fruits = new ArrayList<Fruit>();
+        fruits.add(new Orange());
+        
+        Panier instance = new Panier(1);
         instance.setFruits(fruits);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        ArrayList<Fruit> res = instance.getFruits();
+        
+        assertEquals(res,fruits);
     }
 
     /**
@@ -93,13 +100,14 @@ public class PanierTest {
      */
     @Test
     public void testGetTaillePanier() {
-        System.out.println("getTaillePanier");
-        Panier instance = null;
-        int expResult = 0;
+        Panier instance = new Panier(3);
+        
+        try{instance.ajout(new Orange());}
+        catch(PanierPleinException pp){System.err.println(pp.getMessage());}
+        
+        int expResult = 1;
         int result = instance.getTaillePanier();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(expResult == result);
     }
 
     /**
@@ -107,42 +115,43 @@ public class PanierTest {
      */
     @Test
     public void testGetContenanceMax() {
-        System.out.println("getContenanceMax");
-        Panier instance = null;
-        int expResult = 0;
+        Panier instance = new Panier(10);
+        int expResult = 10;
         int result = instance.getContenanceMax();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(expResult == result);
     }
 
     /**
      * Test of getFruit method, of class Panier.
      */
     @Test
-    public void testGetFruit() {
-        System.out.println("getFruit");
+    public void testGetFruit() throws PanierPleinException, PanierVideException {
         int i = 0;
-        Panier instance = null;
-        Fruit expResult = null;
+        Panier instance = new Panier(2);
+        
+        Fruit expResult = new Orange();
+        
+        instance.ajout(new Orange());
         Fruit result = instance.getFruit(i);
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of setFruit method, of class Panier.
      */
     @Test
-    public void testSetFruit() {
-        System.out.println("setFruit");
+    public void testSetFruit() throws PanierVideException, PanierPleinException {
         int i = 0;
-        Fruit f = null;
-        Panier instance = null;
+        Fruit f = new Orange();
+        Panier instance = new Panier(3);
+        instance.ajout(new Cerise());
         instance.setFruit(i, f);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Fruit res = instance.getFruit(0);
+        
+        assertEquals(res,f);
     }
 
     /**
@@ -150,27 +159,23 @@ public class PanierTest {
      */
     @Test
     public void testEstVide() {
-        System.out.println("estVide");
-        Panier instance = null;
-        boolean expResult = false;
+        Panier instance = new Panier(1);
+        boolean expResult = true;
         boolean result = instance.estVide();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of estPlein method, of class Panier.
      */
     @Test
-    public void testEstPlein() {
-        System.out.println("estPlein");
-        Panier instance = null;
-        boolean expResult = false;
+    public void testEstPlein() throws PanierPleinException {
+        Panier instance = new Panier(1);
+        instance.ajout(new Cerise());
+        
+        boolean expResult = true;
         boolean result = instance.estPlein();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -200,54 +205,62 @@ public class PanierTest {
      * Test of retrait method, of class Panier.
      */
     @Test
-    public void testRetrait() throws Exception {
-        System.out.println("retrait");
-        Panier instance = null;
+    public void testRetrait() throws PanierVideException, PanierPleinException {
+        Panier instance = new Panier(2);
+        instance.ajout(new Cerise());
+        instance.ajout(new Orange());
+        
         instance.retrait();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int expResult = 1;
+        
+        assertTrue(expResult == instance.getTaillePanier() );
     }
 
     /**
      * Test of getPrix method, of class Panier.
      */
     @Test
-    public void testGetPrix() {
-        System.out.println("getPrix");
-        Panier instance = null;
-        double expResult = 0.0;
+    public void testGetPrix() throws PanierPleinException {
+        Panier instance = new Panier(3);
+        instance.ajout(new Orange());
+        instance.ajout(new Orange());
+        
+        double expResult = 1;
         double result = instance.getPrix();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(expResult == result);
     }
 
     /**
      * Test of boycotteOrigine method, of class Panier.
      */
     @Test
-    public void testBoycotteOrigine() {
-        System.out.println("boycotteOrigine");
-        String origine = "";
-        Panier instance = null;
+    public void testBoycotteOrigine() throws PanierPleinException, PanierVideException {
+        String origine = "Espagne";
+        Panier instance = new Panier(3);
+        instance.ajout(new Cerise());
+        instance.ajout(new Orange());
+        instance.ajout(new Cerise());
         instance.boycotteOrigine(origine);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Fruit exp = null;
+        Fruit res = instance.getFruit(1);
+        
     }
 
     /**
      * Test of equals method, of class Panier.
      */
     @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object o = null;
-        Panier instance = null;
-        boolean expResult = false;
+    public void testEquals() throws PanierPleinException {
+        Panier instance = new Panier(1);
+        instance.ajout(new Orange());
+        Panier o = new Panier(1);
+        o.ajout(new Orange());
+        
+        boolean expResult = true;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
