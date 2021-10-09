@@ -1,20 +1,20 @@
-package fr.ufrsciencestech.panier;
+package fr.ufrsciencestech.panier.Modele;
 
 /**
  *
  * @author roudet
  */
-public class Orange implements Fruit{
+public class Cerise {
     private double prix;
     private String origine;
 
-    public Orange()
+    public Cerise()
     {
         this.prix = 0.5;  //prix en euros
         this.origine="Espagne";
     }
 
-    public Orange(double prix, String origine)
+    public Cerise(double prix, String origine)
     {
 	if(prix < 0)
 	    this.prix = -prix;  //une solution possible pour interdire les prix negatifs
@@ -45,19 +45,20 @@ public class Orange implements Fruit{
 
     @Override
     public String toString(){
-        return "Orange de " + origine + " a " + prix + " euros";
+        return "Cerise de " + origine + " a " + prix + " euros";
     }
 
     @Override
-    public boolean equals(Object o){  //predicat pour tester si 2 oranges sont equivalentes
+    public boolean equals(Object o){  //predicat pour tester si 2 Cerises sont equivalentes
         if(o != null && getClass() == o.getClass()){
-            Orange or = (Orange) o;
+            Cerise or = (Cerise) o;
             return (prix == or.prix && origine.equals(or.origine));
         }
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
-        return false;
+    public boolean isSeedless() {  //predicat indiquant qu'une Cerise a des pepins
+        return true;
     }
+
 }

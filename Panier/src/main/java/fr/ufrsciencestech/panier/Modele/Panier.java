@@ -1,4 +1,4 @@
-package fr.ufrsciencestech.panier;
+package fr.ufrsciencestech.panier.Modele;
 
 
 import java.util.*;
@@ -6,7 +6,7 @@ import java.util.*;
  *
  * @author roudet
  */
-public class Panier {
+public class Panier extends Observable {
     private ArrayList<Fruit> fruits;  //attribut pour stocker les fruits
     private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
 
@@ -16,20 +16,7 @@ public class Panier {
 	this.contenanceMax = contenanceMax;
 	this.fruits = new ArrayList<Fruit>();
     }
-    
-    /*-public void add(Fruit f) throws PanierPleinException
-    {
-        if(this.contenanceMax>this.fruits.size())
-        {
-            if( f!= null) fruits.add(f);
-        }
-        else
-        {
-            throw new PanierPleinException();
-        }
-	
-    }
-    */
+
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
         String s = "";
@@ -83,7 +70,9 @@ public class Panier {
            if(o!=null)
            {
                fruits.add(o);
-                System.out.println("fruit ajouté avec succes");
+                //System.out.println("fruit ajouté avec succes");
+                setChanged();
+                notifyObservers();
            }
          
        }
@@ -94,8 +83,18 @@ public class Panier {
     }
 
     //groupe 5
-    public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
-
+    public void retrait() throws PanierVideException
+    { //retire le dernier fruit du panier si celui-ci n'est pas vide
+        if(this.getTaillePanier()>=1)
+        {
+            this.fruits.remove(this.getTaillePanier()-1);
+            setChanged();
+            notifyObservers();
+        }
+        else
+        {
+            throw new PanierVideException();
+        }
     }
 
     //groupe 6
