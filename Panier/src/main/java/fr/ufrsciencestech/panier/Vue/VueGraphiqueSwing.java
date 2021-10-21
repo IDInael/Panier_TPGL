@@ -67,6 +67,8 @@ public class VueGraphiqueSwing extends javax.swing.JFrame implements VueG {
     {
         Plus.addActionListener(c);
         Moins.addActionListener(c);
+        
+        
     }
 
     @Override

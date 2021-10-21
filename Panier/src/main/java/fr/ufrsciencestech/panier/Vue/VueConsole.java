@@ -19,7 +19,7 @@ public class VueConsole implements Observer{
     
     public VueConsole()
     {
-        
+        trace="";
     }
     
     public String getTrace(){return this.trace;}

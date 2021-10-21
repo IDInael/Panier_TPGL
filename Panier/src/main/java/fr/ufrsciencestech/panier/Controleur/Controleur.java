@@ -57,6 +57,19 @@ public class Controleur implements ActionListener{
     
     public Panier getPanier(){return this.panier;}
     
-    
+    @Override
+    public boolean equals(Object o)
+    {
+         if(o != null && getClass() == o.getClass())
+        {
+            Controleur c = (Controleur) o;
+            
+            return c.panier.equals(this.panier);
+        }
+        else 
+        {
+            return false;
+        }
+    }
     
 }

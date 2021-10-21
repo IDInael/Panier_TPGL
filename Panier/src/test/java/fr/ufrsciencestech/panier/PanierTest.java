@@ -238,13 +238,13 @@ public class PanierTest {
     public void testBoycotteOrigine() throws PanierPleinException, PanierVideException {
         String origine = "Espagne";
         Panier instance = new Panier(3);
-        instance.ajout(new Cerise());
-        instance.ajout(new Orange());
+        instance.ajout(new Cerise(0.80,"france"));
+        instance.ajout(new Orange(0.80,"Espagne"));
         instance.ajout(new Cerise());
         instance.boycotteOrigine(origine);
         
-        Fruit exp = null;
-        Fruit res = instance.getFruit(1);
+        assertTrue(instance.getTaillePanier()==2);
+        
         
     }
 
